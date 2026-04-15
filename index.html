@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madame Sadayakko | A Global Limited Series</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-accent: #d4af37;
@@ -27,6 +27,13 @@
         .nav-title {
             font-family: 'Cinzel Decorative', cursive;
             font-weight: 700;
+            text-transform: none;
+        }
+
+        /* Updated Branding Typography for Lorris Productions */
+        .brand-logo-footer {
+            font-family: 'Libre Baskerville', serif;
+            letter-spacing: normal;
             text-transform: none;
         }
 
@@ -95,7 +102,7 @@
 
     <!-- Navigation -->
     <nav class="p-6 flex justify-between items-center border-b border-white/10 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg">
-        <div class="w-24"></div> <!-- Spacer for centering title -->
+        <div class="w-24"></div> 
         <div class="text-xl tracking-[0.2em] nav-title text-[#d4af37]">Madame Sadayakko</div>
         <div class="flex gap-4 text-[10px] tracking-widest uppercase font-bold">
             <span onclick="switchLang('en')" id="btn-en" class="lang-btn active">EN</span>
@@ -108,7 +115,6 @@
     <header class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 z-0 hero-bg" id="heroBg">
             <div class="relative w-full h-full flex items-center justify-center">
-                <!-- Updated background image source -->
                 <img src="sadayakko-bg.jpg" 
                      alt="Sadayakko Background" 
                      class="absolute object-cover w-full h-full opacity-60 mix-blend-luminosity scale-110"
@@ -141,18 +147,32 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-32 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+    <main class="max-w-7xl mx-auto px-6 py-16 md:py-32 relative z-10">
+        <!-- Reordering sections for mobile using flex-col and order utility -->
+        <div class="flex flex-col lg:grid lg:grid-cols-3 gap-12 lg:gap-24">
             
-            <div class="lg:col-span-2 space-y-32">
-                <!-- Visual Accent Quote -->
-                <section class="reveal border-l border-[#d4af37]/20 pl-12 py-4">
+            <div class="lg:col-span-2 flex flex-col space-y-16 md:space-y-32">
+                
+                <!-- 1. QUOTE SECTION (Order 1 on mobile) -->
+                <section class="reveal border-l border-[#d4af37]/20 pl-12 py-4 order-1">
                     <h3 data-t="quote-text" class="text-2xl serif-body italic leading-relaxed text-gray-300 mb-6 italic">"She has conquered us, and she has us grovelling at her feet."</h3>
                     <p data-t="quote-source" class="text-gray-500 uppercase tracking-widest text-[10px]">Boston Sunday Journal, 1899</p>
                 </section>
 
-                <!-- Content Block 1 -->
-                <section class="reveal">
+                <!-- 2. SERIES STATUS (Order 2 on mobile, hidden on Desktop in this column) -->
+                <div class="lg:hidden reveal space-y-6 px-6 order-2">
+                    <div>
+                        <h4 data-t="sidebar-status-h" class="text-[10px] text-gray-600 uppercase tracking-[0.4em] mb-2 font-bold">Series Status</h4>
+                        <p data-t="sidebar-status-p" class="serif-body italic text-gray-400">In Active Development</p>
+                    </div>
+                    <div>
+                        <h4 data-t="sidebar-premiere-h" class="text-[10px] text-gray-600 uppercase tracking-[0.4em] mb-2 font-bold">Global Premiere</h4>
+                        <p data-t="sidebar-premiere-p" class="serif-body italic text-gray-400">TBD</p>
+                    </div>
+                </div>
+
+                <!-- 3. MAIN CONTENT (Order 3 on mobile) -->
+                <section class="reveal order-3">
                     <h2 data-t="content-title" class="text-4xl serif-title mb-10 text-[#d4af37]">A Global Prestige Event</h2>
                     <p data-t="content-lead" class="text-2xl serif-body italic leading-relaxed text-gray-300 mb-8 font-light">
                         The extraordinary true story of Japan’s first global superstar – and the muse behind Puccini’s <em>Madama Butterfly</em>.
@@ -162,8 +182,8 @@
                     </div>
                 </section>
 
-                <!-- Call to Action -->
-                <section id="signup" class="reveal bg-gradient-to-br from-white/5 to-transparent p-12 rounded-sm border border-white/10 relative overflow-hidden">
+                <!-- 4. SIGNUP (Order 4 on mobile) -->
+                <section id="signup" class="reveal bg-gradient-to-br from-white/5 to-transparent p-8 md:p-12 rounded-sm border border-white/10 relative overflow-hidden order-4">
                     <h3 data-t="cta-title" class="text-2xl serif-title mb-4">Stay Informed</h3>
                     <p id="subscription-status" data-t="cta-sub" class="text-sm text-gray-400 mb-10 uppercase tracking-widest font-light">Subscribe for development updates and production news.</p>
                     <form id="subscribeForm" class="flex flex-col md:flex-row gap-4">
@@ -173,10 +193,28 @@
                         </button>
                     </form>
                 </section>
+
+                <!-- 5. BIOGRAPHY (Order 5 on mobile) -->
+                <div class="lg:hidden reveal bg-silk p-8 border border-[#d4af37]/20 rounded-sm shadow-2xl order-5">
+                    <div class="text-center mb-10">
+                        <span data-t="sidebar-bio-h" class="text-[10px] text-[#d4af37] uppercase tracking-[0.4em] font-bold">The Biography</span>
+                    </div>
+                    <div class="aspect-[2/3] bg-neutral-900 mb-10 shadow-2xl relative border border-white/5 overflow-hidden">
+                         <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-t from-black via-neutral-900 to-neutral-800">
+                            <div class="w-10 h-px bg-[#d4af37] mb-6 opacity-40"></div>
+                            <span class="serif-title text-2xl font-bold text-white mb-2 tracking-wide">Madame Sadayakko</span>
+                            <span data-t="book-sub" class="text-[8px] tracking-[0.3em] text-gray-500 uppercase mb-8 italic">The Geisha who Seduced the West</span>
+                            <span class="serif-body italic text-sm text-[#d4af37]">Lesley Downer</span>
+                         </div>
+                    </div>
+                    <a href="https://a.co/d/01BCPwi4" target="_blank" data-t="buy-btn" class="block w-full text-center py-4 border border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all uppercase text-[10px] tracking-[0.4em] font-bold">
+                        Buy Now
+                    </a>
+                </div>
             </div>
 
-            <!-- Sidebar -->
-            <aside class="lg:col-span-1">
+            <!-- DESKTOP SIDEBAR -->
+            <aside class="hidden lg:block lg:col-span-1">
                 <div class="sticky top-32 space-y-16">
                     <div class="reveal space-y-8 px-6 pb-4">
                         <div>
@@ -212,9 +250,9 @@
         </div>
     </main>
 
-    <footer class="py-32 border-t border-white/5 text-center bg-black">
-        <div class="mb-12">
-            <a href="http://lorrisproductions.com" target="_blank" class="font-serif text-2xl text-white tracking-[0.15em] hover:text-[#d4af37] transition-colors duration-300">
+    <footer class="py-24 md:py-32 border-t border-white/5 text-center bg-black">
+        <div class="mb-4">
+            <a href="http://lorrisproductions.com" target="_blank" class="brand-logo-footer text-3xl text-white hover:text-[#d4af37] transition-colors duration-300">
                 Lorris Productions
             </a>
         </div>
@@ -278,28 +316,22 @@
         function switchLang(lang) {
             const t = translations[lang];
             
-            // Text switching
             document.querySelectorAll('[data-t]').forEach(el => {
                 const key = el.getAttribute('data-t');
                 if (t[key]) el.innerHTML = t[key];
             });
 
-            // Handle Body Text (Arrays)
-            const bodyContainer = document.getElementById('main-content-text');
-            bodyContainer.innerHTML = t['content-body'].map(p => `<p>${p}</p>`).join('');
+            const bodyContainers = [document.getElementById('main-content-text')];
+            bodyContainers.forEach(container => {
+                if(container) container.innerHTML = t['content-body'].map(p => `<p>${p}</p>`).join('');
+            });
 
-            // Toggle active state on buttons
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-jp').classList.toggle('active', lang === 'jp');
-
-            // Update placeholder
             document.getElementById('emailInput').placeholder = lang === 'en' ? "Email Address" : "メールアドレス";
-            
-            // Update global lang attribute
             document.documentElement.lang = lang;
         }
 
-        // Initialize with English
         window.onload = () => switchLang('en');
     </script>
 
@@ -309,7 +341,6 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // CONFIGURATION
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxEwnbTdksrfHoiPS--Ly9LFsBySHINYIrP1-LnwDtuhV3hb4X7abWLHe6FiDsyzLw/exec"; 
 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'madamesadayakko-website';
@@ -371,7 +402,6 @@
                     timestamp: new Date().toISOString()
                 };
 
-                // 1. SAVE TO FIRESTORE (Backup/Primary Database)
                 const leadsCollection = collection(db, 'artifacts', appId, 'public', 'data', 'subscribers');
                 const firestoreTask = addDoc(leadsCollection, {
                     ...payload,
@@ -379,7 +409,6 @@
                     userId: auth.currentUser.uid
                 });
 
-                // 2. SAVE TO GOOGLE SHEETS
                 let sheetsTask = Promise.resolve();
                 if (GOOGLE_SHEET_URL) {
                     sheetsTask = fetch(GOOGLE_SHEET_URL, {
